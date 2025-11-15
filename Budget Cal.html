@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Budget Calculator</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+body{font-family:Arial;text-align:center;background:#f2f2f2;}
+.box{padding:15px;margin:10px;color:white;border-radius:8px;display:inline-block;width:150px;}
+.r{background:#0057b7;} .g{background:#2e8b57;} .b{background:#007acc;} .p{background:#c2185b;}
+</style>
+</head>
+<body>
+
+<h2>Budget Calculator App</h2>
+
+<input id="amount" type="number" placeholder="Enter Amount"><br><br>
+
+Room Rent(%) <input id="r" type="number" value="35" size="4">
+Accessories(%) <input id="a" type="number" value="15" size="4">
+Emergency(%) <input id="e" type="number" value="20" size="4">
+Saving(%) <input id="s" type="number" value="30" size="4"><br><br>
+
+<button id="calc">Evaluate My Money</button>
+
+<div id="out"></div>
+
+<script>
+$("#calc").click(function(){
+    let amt = parseFloat($("#amount").val());
+    let r = +$("#r").val(), a = +$("#a").val(), e = +$("#e").val(), s = +$("#s").val();
+    if(r+a+e+s !== 100){ alert("Total % must be 100"); return; }
+
+    $("#out").html(`
+        <div class='box r'>Room Rent<br>Rs.${(amt*r/100).toFixed(2)}</div>
+        <div class='box g'>Accessories<br>Rs.${(amt*a/100).toFixed(2)}</div>
+        <div class='box b'>Emergency<br>Rs.${(amt*e/100).toFixed(2)}</div>
+        <div class='box p'>Saving<br>Rs.${(amt*s/100).toFixed(2)}</div>
+    `);
+});
+</script>
+
+</body>
+</html>
